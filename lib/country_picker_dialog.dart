@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/helpers.dart';
@@ -128,24 +129,17 @@ class _CountryPickerDialogState extends State<CountryPickerDialog> {
                           (a, b) =>
                               a.localizedName(widget.languageCode).compareTo(b.localizedName(widget.languageCode)),
                         );
+
                       if (mounted) setState(() {});
+
+                      SemanticsService.announce(
+                          _filteredCountries.isEmpty
+                              ? 'No search results'
+                              : '${_filteredCountries.length} results found',
+                          TextDirection.ltr);
                     });
                   },
                 ),
-              ),
-              const SizedBox(height: 20),
-              Semantics(
-                container: true,
-                liveRegion: true,
-                child: Visibility(
-                    maintainState: true,
-                    maintainAnimation: true,
-                    maintainSize: true,
-                    visible: false,
-                    maintainSemantics: true,
-                    child: Text(_filteredCountries.isEmpty
-                        ? 'No search results'
-                        : '${_filteredCountries.length} results found')),
               ),
               const SizedBox(height: 20),
               Expanded(
