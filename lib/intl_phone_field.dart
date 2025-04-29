@@ -385,7 +385,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-            height: Theme.of(context).inputDecorationTheme.isDense ? 44 : 56,
+            height: Theme.of(context).inputDecorationTheme.isDense ? 48 : 56,
             decoration: BoxDecoration(
               border:
                   Border.all(color: (Theme.of(context).inputDecorationTheme.border?.borderSide.color ?? Colors.grey)),
